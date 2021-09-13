@@ -1,0 +1,63 @@
+\documentclass[12pt]{article}
+\usepackage{graphicx}
+\usepackage{tikz}
+\usepackage[parfill]{parskip}
+\usepackage[top=1in,left=1.6in,right=1.6in]{geometry}
+\usetikzlibrary{shapes,arrows,decorations.markings}
+\tikzset{
+    % >=latex,
+    arrowfwd/.style={decoration={markings,mark=at position 1 with {\arrow[scale=2,>=stealth]{>}}},postaction={decorate}},
+    arrowboth/.style={decoration={markings,mark=at position 0.15 with {\arrow[scale=2,>=stealth]{<}},mark=at position 1 with {\arrow[scale=2,>=stealth]{>}}},postaction={decorate}},
+    recwht/.style={draw,minimum width=3cm,minimum height=2cm,align=center,text width=3cm,text=black,fill=white,draw=black!50,thick},
+    squorg/.style={draw,minimum width=2cm,minimum height=2cm,align=center,text width=2cm,text=orange,fill=white,draw=orange!50,thick},
+    rndred/.style={rounded corners=1cm,draw,minimum width=3cm,minimum height=2cm,align=center,text width=3cm,text=red,fill=rwhite,draw=red!30,thick},
+    rndyel/.style={rounded corners=1cm,draw,minimum width=3cm,minimum height=2cm,align=center,text width=3cm,text=yellow,fill=white,draw=yellow!50,thick},
+    diared/.style={diamond,draw,minimum width=3cm,minimum height=2cm,align=center,text width=3cm,text=red,fill=white,draw=red!30,thick,aspect=1.5},
+    diayel/.style={diamond,draw,minimum width=3cm,minimum height=2cm,align=center,text width=3cm,text=yellow,fill=white,draw=yellow!50,thick,aspect=1.5},
+    cirblu/.style={circle,draw,minimum width=2cm,minimum height=2cm,align=center,text width=2cm,text=blue,fill=white,draw=blue!50,very thick},
+    cirred/.style={circle,draw,minimum width=2cm,minimum height=2cm,align=center,text width=2cm,text={rgb:red,255;green,0;blue,122},fill=white,draw={rgb:red,255;green,0;blue,122},very thick},
+    cirpur/.style={circle,draw,minimum width=2cm,minimum height=2cm,align=center,text width=2cm,text={rgb:red,130;green,60;blue,250},fill=white,draw={rgb:red,130;green,60;blue,250},very thick},
+    cylwht/.style={cylinder,draw,shape aspect=.5,cylinder uses custom fill,cylinder end fill=white,minimum width=1cm,minimum height=1cm,cylinder body fill=white,opacity=1,scale=2,draw=black!50,thick,rotate=90}
+}
+
+\title{Flashstake - Staking to Release Future Returns}
+\author{Sean Hart}
+
+\begin{document}
+   \maketitle
+
+   \begin{abstract}
+      Flash v3 is a decentralized exchange that releases future LP token gains when tokens are locked up.
+   \end{abstract}
+
+   \section*{Introduction}
+
+      \subsection*{Terms}
+         \begin{itemize}{}{}
+            \item Token Pair (\$Token)
+         \end{itemize}
+
+      % EXECUTION GRAPHIC
+      \begin{center}
+         \resizebox{8cm}{7cm}{
+            \begin{tikzpicture}[x=4.5cm,y=2cm]
+               \node[recwht] (rec2) at (0,3) {PRICE\\ORACLE};
+               \node[squorg] (squ1) at (1,5) {BURN\\ALL\\TOKENS};
+               \node[recwht] (rec3) at (2.2,3) {DEX};
+               \node[cirred] (cir3) at (2.2,1.1) {TARGET\\TOKEN};
+         
+               \begin{scope} %[every path/.style={-latex}]
+                     \draw[arrowfwd] (rec1) -- (cir1);
+                  %  \draw[arrowfwd] (rec1.north east)+(-.15,0) -- (cir1);
+                  %  \draw[arrowfwd] (cir1) -- (cir1b);
+                     \draw[arrowboth] (cir1) -- (rec2);
+                     \draw[arrowfwd] (cir1) -- (squ1);
+                     \draw[arrowfwd] (cir1) -- (cir2);
+                     \draw[arrowfwd] (rec3) -- (cir3);
+                     % \draw (rec3) edge node[midway,fill=white,inner sep=2pt] {No} (cir3);
+                     % \draw (rec3.north east) -- ++(cir3);
+               \end{scope}
+            \end{tikzpicture}
+         }
+
+\end{document}
